@@ -1,1 +1,6 @@
-"use strict";jQuery;
+"use strict";
+(function ($) {
+// Write your custom JavaScript code here.
+
+
+})(jQuery);
