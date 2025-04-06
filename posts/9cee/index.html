@@ -1,1 +1,493 @@
-<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#33363b"><meta name="msapplication-TileColor" content="#33363b"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-145268421-1"></script><script>window.dataLayer=window.dataLayer||[];var gtag=function(){dataLayer.push(arguments)};gtag("js",new Date),gtag("config","UA-145268421-1")</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?265c38da225b520620b94857150b4d2c";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><meta name="keywords" content="Life, ARIA, Hexo"><link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-144x144.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png"><link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b"><link rel="manifest" href="/favicons/site.webmanifest"><meta name="msapplication-config" content="/favicons/browserconfig.xml"><link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/index.css"><link rel="stylesheet" type="text/css" href="/css/sidebar.css"><link rel="stylesheet" type="text/css" href="/css/page.css"><link rel="stylesheet" type="text/css" href="/css/post.css"><link rel="stylesheet" type="text/css" href="/css/custom.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous"><link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css"><link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css"><script type="text/javascript" src="/js/jquery.min.js"></script><script defer="defer" type="text/javascript" src="/js/util.js"></script><script defer="defer" type="text/javascript" src="/js/clipboard.min.js"></script><script defer="defer" type="text/javascript" src="/js/scrollspy.js"></script><script defer="defer" type="text/javascript" src="/js/fontawesome-all.min.js"></script><script defer="defer" type="text/javascript" src="/js/lightgallery.min.js"></script><script defer="defer" type="text/javascript" src="/js/lg-fullscreen.min.js"></script><script defer="defer" type="text/javascript" src="/js/lg-hash.min.js"></script><script defer="defer" type="text/javascript" src="/js/lg-pager.min.js"></script><script defer="defer" type="text/javascript" src="/js/lg-thumbnail.min.js"></script><script defer="defer" type="text/javascript" src="/js/lg-zoom.min.js"></script><script defer="defer" type="text/javascript" src="/js/search.js"></script><script type="text/javascript">$(document).ready(function(){var e="search.xml";0===e.length&&(e="search.xml"),searchFunc("/"+e,"search-input","search-result")})</script><script defer="defer" type="text/javascript" src="/js/index.js"></script><script type="text/javascript">$(document).ready(function(){var t=$(".post figure.highlight");(t.length?($(t).each(function(t,i){}),new ClipboardJS("button.copy",{target:function(t){return t.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild}})):(t=$(".post pre code"),$(t).each(function(t,i){}),new ClipboardJS("button.copy",{target:function(t){return t.nextElementSibling.firstChild}}))).on("success",function(t){t.clearSelection();var i=t.trigger;i.innerHTML="已复制",$(i).addClass("copied"),setTimeout(function(){i.innerHTML="复制",$(i).removeClass("copied")},1500)})})</script><script defer="defer" type="text/javascript" src="/js/custom.js"></script><script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script><script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body)"></script><title>基准测试(Benchmark) JMH 实战篇 | 科技洞见 - 技术练达即文章</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN" data-spy="scroll" data-target=".list-group"><header id="header" class="header" style="background:#33363b"><div class="container"><div class="header-container"><div class="header-title"><h1 class="title"><a href="/">科技洞见</a></h1><h2 class="subtitle">技术练达即文章</h2></div></div><nav id="nav" class="nav"><a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a><ul id="menu" role="menubar" aria-hidden="false"><li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li><li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li><li role="menuitem"><a href="/categories/"><i class="fas fa-th-list"></i><span class="menu-text">分类</span></a></li><li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li><li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li></ul></nav></div></header><main id="main" class="main"><div class="container"><div class="main-container"><div class="content"><div id="post" class="page"><article class="article post card" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://technologiesinsight.com/posts/9cee/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="KevinZhang"><meta itemprop="description" content="技术练达即文章"><meta itemprop="image" content="/images/ava1.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="科技洞见"></span></div><header class="post-header"><h1 class="post-title" itemprop="name headline">基准测试(Benchmark) JMH 实战篇</h1><div class="post-meta"><span class="post-date"><i class="far fa-calendar-plus"></i> <span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-07-13T20:17:00+08:00">2019-07-13 20:17:00</time></span></span> <span class="post-meta-divider divider">|</span><span class="post-categories"><i class="far fa-folder-open"></i> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span></span> <span class="post-meta-divider divider">|</span><span class="post-comment-count"><i class="far fa-comments"></i><span><a href="/posts/9cee/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="posts/9cee/" itemprop="commentCount"></span></a></span></span></div></header><main class="post-main" itemprop="articleBody"><p>上一篇文章介绍了基准测试的基本概念以及 Java性能测试工具 JMH 的简单使用。这一篇文章将通过实例详细介绍 JMH 的使用方法，并验证几个提高程序性能的方式是否正确并给出作者的结论。</p><a id="more"></a><h1 id="字符串拼接基准测试"><a class="markdownIt-Anchor" href="#字符串拼接基准测试"></a> 字符串拼接基准测试</h1><p>Java 中有这样一条优化建议，在循环中使用”+“号拼接字符串会带来很大的性能损失，应该使用StringBuilder。</p><p>这样的建议是否准确呢？我们可以设计基准测试来验证，使用的当然是我们的主角 JMH，下面是代码实现 (源码可以在 GitHub 上查看：<a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">地址</a>)</p><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Benchmark;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.BenchmarkMode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Mode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.OutputTimeUnit;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.Runner;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.RunnerException;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.options.Options;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.options.OptionsBuilder;<br><br><span class="hljs-comment">/**<br> * 字符串拼接基准测试<br> *<br> * 测试结果：<br> * &lt;pre&gt;<br> * Benchmark                                         Mode  Cnt   Score    Error  Units<br> * StringAppendBenchmarkTenK.stringAddBenchmark      avgt   25  82.590 ± 14.824  ms/op<br> * StringAppendBenchmarkTenK.stringBufferBenchmark   avgt   25   0.127 ±  0.005  ms/op<br> * StringAppendBenchmarkTenK.stringBuilderBenchmark  avgt   25   0.146 ±  0.010  ms/op<br> * &lt;/pre&gt;<br> *<br> * <span class="hljs-doctag">@author</span> KevinZhang &lt;kevin.zhang.me@gmail.com&gt;<br> */</span><br><span class="hljs-meta">@BenchmarkMode</span>(Mode.AverageTime)<br><span class="hljs-meta">@OutputTimeUnit</span>(TimeUnit.MILLISECONDS)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringAppendBenchmarkTenK</span> </span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TEN_K = <span class="hljs-number">10000</span>;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringAddBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        String targetString = <span class="hljs-string">""</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            targetString += <span class="hljs-string">"hello"</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> targetString;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringBuilderBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            sb.append(<span class="hljs-string">"hello"</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringBufferBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            sb.append(<span class="hljs-string">"hello"</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RunnerException </span>&#123;<br>        Options opt = <span class="hljs-keyword">new</span> OptionsBuilder()<br>                .include(StringAppendBenchmarkTenK.class.getSimpleName())<br>                .forks(<span class="hljs-number">1</span>)<br>                .build();<br><br>        <span class="hljs-keyword">new</span> Runner(opt).run();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure><p>可以看到有几个注解:</p><p>@BenchmarkMode 代表基准测试模式，包含</p><ul><li><code>Throughput</code> 模式 ：吞吐量模式，测试单位时间内可以执行测试方法的次数（默认1秒）</li><li><code>Average Time</code> 模式：平均时间模式，测试平均每次操作需要多长时间，它的值等于 <code>Throughput</code> 模式的倒数</li><li><code>Sample Time</code>模式：时间取样模式，测试单位时间运行，自动取样执行的时间进行测量，其结果包含统计信息，比如 P99 、数据分布情况等等</li><li><code>Single Shot Time</code>模式：测试单次方法运行的时间，没有 预热阶段，适合测试冷启动所需要的时间</li><li><code>All</code>模式：同时使用以上所有模式</li></ul><p>@Benchmark 代表这个方法是一个基准测试用例，作为测试用例的入口，类似JUnit 中 @Test 注解</p><p>@OutputTimeUnit 设置输出数据的单位，此处是毫秒，加上AverageTime 模式，最后的单位是 ms/op：每次操作需要多少毫秒</p><h2 id="测试结果"><a class="markdownIt-Anchor" href="#测试结果"></a> 测试结果</h2><p>下面是在我在本地运行的结果:</p><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">Benchmark                                         Mode  Cnt   Score    Error  Units<br>StringAppendBenchmarkTenK.stringAddBenchmark      avgt   25  82.590 ± 14.824  ms/op<br>StringAppendBenchmarkTenK.stringBufferBenchmark   avgt   25   0.127 ±  0.005  ms/op<br>StringAppendBenchmarkTenK.stringBuilderBenchmark  avgt   25   0.146 ±  0.010  ms/op<br></code></pre></td></tr></table></figure><p>我们可以看到 stringAddBenchmark 代表简单Sting 相加的方式，使用平均时间模式，平均每次执行需要82.590毫秒，误差在 ± 14.824 ms。其他两个的意义与之类似。</p><h2 id="结果分析"><a class="markdownIt-Anchor" href="#结果分析"></a> 结果分析</h2><p>从结果中我们可以看到，</p><ol><li><strong>使用简单的字符串相加比使用 StringBuffer 和 StringBuilder 慢了两个数量级；</strong></li><li><strong>StringBuilder 比 StringBuffer要慢一些；</strong></li></ol><p>结果 1 的原因是：String 在字符串拼接时，每次循环会创建新的 StringBuffer 对象(不是 String 对象)，然后把原来的对象销毁，而 StringBuffer / StringBuilder 在初始化时预留了一定的空间，在调用 append 方法时只有在预留空间不足时才会发生数组拷贝。</p><p>结果 2 的原因是：StringBuffer 是线程安全的，append 方法是加锁的；StringBuilder 是非线程安全的。两个类除了在线程安全上的区别，其他几乎没有任何差别。</p><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// StringBuilder 的 toString 方法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> StringBuilder <span class="hljs-title">append</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.append(str);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<br> &#125;<br><span class="hljs-comment">// StringBuffer 的 toString 方法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> StringBuffer <span class="hljs-title">append</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        toStringCache = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">super</span>.append(str);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<br> &#125;<br></code></pre></td></tr></table></figure><h2 id="展望"><a class="markdownIt-Anchor" href="#展望"></a> 展望</h2><p>分析至此，我们还可以得出一个结论，**尽管在没有多线程竞争的情况下，加锁仍会损失一部分性能。**这个结论可以设计另一个基准测试来验证，读者有兴趣可以自己设计。</p><h1 id="线程安全的-long-类型"><a class="markdownIt-Anchor" href="#线程安全的-long-类型"></a> 线程安全的 Long 类型</h1><p>说起线程安全的 long 类型的实现，不难想到有使用悲观锁锁synchronized 、乐观锁 AtomicLong 这两种实现，有没有性能更高的实现呢？肯定是有的，java 8 中发布的 LongAdder 就是为替代 AtomicLong 而存在的。</p><p>LongAdder 原理，简单来讲就是在多线程竞争激烈的情况下，LongAdder 将维护的值分散到多个段中，来减少CAS的重试，当需要获得结果时，只需要把各个段相加就可以了（类比 ConcurrentHashMap 分段锁的实现）。与 AtomicLong 多线程 CAS 更新单个值相比，理论上性能会有提升。</p><p>下面是我设计的基准测试的用例(源码可以在 GitHub 上查看：<a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">地址</a>)，用来验证线程安全Long类型的不同实现。</p><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicLong;<br><span class="hljs-keyword">import</span> java.util.concurrent.atomic.LongAdder;<br><br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Benchmark;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.BenchmarkMode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Fork;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Level;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Measurement;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Mode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.OutputTimeUnit;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Scope;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Setup;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.State;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.TearDown;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Threads;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Warmup;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.RunnerException;<br><br><span class="hljs-keyword">import</span> com.technologiesinsight.jmh.helper.LunchHelper;<br><br><br><span class="hljs-comment">/**<br> *  synchronized 锁 vs AtomicLong vs LongAdder 基准测试<br> *<br> * &lt;pre&gt;<br> * Benchmark                                  Mode  Cnt    Score    Error  Units<br> * ThreadSafeLong.testAtomicLongIncrement     avgt   25  383.194 ± 23.359  ms/op<br> * ThreadSafeLong.testLongAdderIncrement      avgt   25  108.105 ±  2.911  ms/op<br> * ThreadSafeLong.testPrimitiveLongIncrement  avgt   25  908.964 ± 29.782  ms/op<br> * &lt;/pre&gt;<br> * <span class="hljs-doctag">@author</span> KevinZhang &lt;kevin.zhang.me@gmail.com&gt;<br> */</span><br><span class="hljs-meta">@BenchmarkMode</span>(Mode.AverageTime)<br><span class="hljs-meta">@OutputTimeUnit</span>(TimeUnit.MILLISECONDS)<br><span class="hljs-comment">//@Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.SECONDS)</span><br><span class="hljs-comment">//@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.SECONDS)</span><br><span class="hljs-comment">//@Fork(1)</span><br><span class="hljs-meta">@State</span>(Scope.Benchmark)<br><span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadSafeLong</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Integer LOOP = <span class="hljs-number">10000000</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object lock = <span class="hljs-keyword">new</span> Object();<br><br>    <span class="hljs-keyword">private</span> AtomicLong atomicLong;<br>    <span class="hljs-keyword">private</span> LongAdder longAdder;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> primitiveLong;<br><br><br>    <span class="hljs-meta">@Setup</span>(Level.Iteration)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.atomicLong = <span class="hljs-keyword">new</span> AtomicLong();<br>        <span class="hljs-keyword">this</span>.longAdder = <span class="hljs-keyword">new</span> LongAdder();<br>        <span class="hljs-keyword">this</span>.primitiveLong = <span class="hljs-number">0L</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testPrimitiveLongIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            <span class="hljs-keyword">synchronized</span> (lock) &#123;<br>                primitiveLong = primitiveLong + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> primitiveLong;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testAtomicLongIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            atomicLong.incrementAndGet();<br>        &#125;<br>        <span class="hljs-keyword">return</span> atomicLong.get();<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testLongAdderIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            longAdder.increment();<br>        &#125;<br>        <span class="hljs-keyword">return</span> longAdder.longValue();<br>    &#125;<br><br>    <span class="hljs-meta">@TearDown</span>(Level.Iteration)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tearDown</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> atomicResult = atomicLong.get();<br>        <span class="hljs-keyword">long</span> longAdderResult = longAdder.longValue();<br>        System.out.println(String.format(<span class="hljs-string">"primitiveLongResult is %s,atomicResult is :%s;longAdderResult is %s"</span>, primitiveLong, atomicResult, longAdderResult));<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RunnerException </span>&#123;<br>        LunchHelper.lunchBenchmark(ThreadSafeLong.class);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure><p>相比于上一个案例，我们发现了几个关于 JMH 的“新面孔”</p><ul><li>@State(Scope.Benchmark) ：有时候测试用例中需要维护一些”状态“（测试用不是一个”纯函数“），”状态“的变化可能会影响测试的结果。所以需要由JMH 管理这些状态，并显示的声明这些状态的声明周期（有效范围）。状态生命周期分为三类，由State的参数指定:<ul><li><code>Thread</code> 每一个线程创建自己的状态对象。因此共享对象不会有线程安全问题。</li><li><code>Group</code> 组内共享状态对象。不同分组可以使用 @Group(“groupName”) 指定</li><li><code>Benchmark</code> 一次迭代运行中所有的线程共享状态对象。</li></ul></li><li>@Setup(Level.Iteration) :用于执行基准测试前执行一些操作，比如初始化等等。参数 Level表示改方法说明时候执行：<ul><li><code>Trial</code> 每次一个进程完整运行一遍测试用例之前执行：包括 warmUp 和 正式执行阶段</li><li><code>Iteration</code> 每次迭代前会执行。一次完整的运行包含多次迭代过程，每次迭代运行一次测试的方法。</li><li><code>Invocation</code> 每次方法调用前会执行。</li></ul></li><li>@TearDown : 类似@Setup ,在测试后执行</li><li>@Thread :同时执行的线程数，用于线程下的基准测试</li><li>注释部分 @Measurement 等：用于测试用例开发阶段，提高执行速度，正式测试前需要注释掉</li><li><code>LunchHelper.lunchBenchmark(ThreadSafeLong.class)</code> JMH 启动助手</li></ul><h2 id="测试结果-2"><a class="markdownIt-Anchor" href="#测试结果-2"></a> 测试结果</h2><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">Benchmark                                  Mode  Cnt    Score    Error  Units<br>ThreadSafeLong.testAtomicLongIncrement     avgt   25  383.194 ± 23.359  ms/op<br>ThreadSafeLong.testLongAdderIncrement      avgt   25  108.105 ±  2.911  ms/op<br>ThreadSafeLong.testPrimitiveLongIncrement  avgt   25  908.964 ± 29.782  ms/op<br></code></pre></td></tr></table></figure><p>通过基准测试结果我们可以看到，testAtomicLongIncrement 代表使用 Atomic 类完成自增，运行 25 次后，所得到每次运行平均时间是383.194 ms，误差在± 23.359ms。其他结果的意义与之类似。</p><h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2><p>从结果中可以看到，在两个线程竞争同一个 long 类型的情况下，LongAdder 性能最好名副其实，AtomicLong 次之，使用 synchronized 加锁性能最差。</p><p>在日常开发中，我们可以尝试使用 LongAdder 代替 AtomicInteger 和加锁的方式</p><h2 id="展望-2"><a class="markdownIt-Anchor" href="#展望-2"></a> 展望</h2><p>通过这个测试案例，我们可以分析出 JMH 测试框架本身的性能损耗，欢迎有兴趣的读者留言交流。</p><h1 id="其他测试案例"><a class="markdownIt-Anchor" href="#其他测试案例"></a> 其他测试案例</h1><p><a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">源码</a> 中还有其他一些测试案例，比如</p><ul><li>常见几个Map的测试：位于 com.technologiesinsight.jmh.MapBenchmark</li></ul><h1 id="展望-3"><a class="markdownIt-Anchor" href="#展望-3"></a> 展望</h1><p>很多公司编程对测试环节于不太重视，追求的是功能快速上线。这样的做法短期内可以提高开发速度，但如果从长远来看，单元测试，基准测试等测试，会减少后期维护、功能扩展的成本；对于开发者来说，掌握基本的测试理论和实践是一项基本的能力。</p></main><footer class="post-footer"><div class="post-tags"><a class="post-tag button" href="/tags/原创/" rel="tag"><i class="fas fa-tags"></i> 原创</a><a class="post-tag button" href="/tags/JMH/" rel="tag"><i class="fas fa-tags"></i> JMH</a><a class="post-tag button" href="/tags/基准测试/" rel="tag"><i class="fas fa-tags"></i> 基准测试</a></div></footer></article><nav class="page-nav"><div class="page-nav-next page-nav-item"><a href="/posts/9ee5/" rel="next" title="基准测试 (Benchmark) 入门篇"><i class="fas fa-angle-left"></i> <span class="nav-title">基准测试 (Benchmark) 入门篇</span></a></div><div class="page-nav-prev page-nav-item"> <a href="/posts/1a8c/" rel="prev" title="大数据系统下的 Lambda 架构"><span class="nav-title">大数据系统下的 Lambda 架构</span><i class="fas fa-angle-right"></i></a></div></nav><div class="comments" id="comments"><script defer="defer" id="dsq-count-scr" src="//technologiesinsight.disqus.com/count.js"></script><div id="disqus_thread" class="disqus_thread"></div><script type="text/javascript">var disqus_config=function(){this.page.url="https://technologiesinsight.com/posts/9cee/",this.page.identifier="posts/9cee/"};!function(){var t=document,e=t.createElement("script");e.src="https://technologiesinsight.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script></div></div></div><aside class="sidebar" id="sidebar" style="background:url(/images/background.png)"><div class="search"><div class="form-group"><i class="fas fa-search"></i> <input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"></div></div><div class="search-result-box" id="search-result"></div><div class="info sidebar-item" id="info"> <img class="author-avatar" src="/images/ava1.jpg" alt="KevinZhang"><h1 class="author-name">KevinZhang</h1><h2 class="author-description">技术练达即文章</h2><div class="site-count"><div class="archives-count count-block"><div class="site-count-title">归档</div><div><a href="/archives/">6</a></div></div><div class="categories-count count-block"><div class="site-count-title">分类</div><div><a href="/categories/">5</a></div></div><div class="tags-count count-block"><div class="site-count-title">标签</div><div><a href="/tags/">9</a></div></div></div></div><div class="sidebar-sticky"><hr><div class="post-toc sidebar-item" id="toc-div"><div><i class="fas fa-list-ol"></i>文章目录</div><div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"> <a class="list-group-item toc-link" href="#字符串拼接基准测试"><span class="toc-text">字符串拼接基准测试</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#测试结果"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#结果分析"><span class="toc-text">结果分析</span></a></li><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#展望"><span class="toc-text">展望</span></a></li></ol></li><li class="toc-item toc-level-1"> <a class="list-group-item toc-link" href="#线程安全的-long-类型"><span class="toc-text">线程安全的 Long 类型</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#测试结果-2"><span class="toc-text">测试结果</span></a></li><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"> <a class="list-group-item toc-link" href="#展望-2"><span class="toc-text">展望</span></a></li></ol></li><li class="toc-item toc-level-1"> <a class="list-group-item toc-link" href="#其他测试案例"><span class="toc-text">其他测试案例</span></a></li><li class="toc-item toc-level-1"> <a class="list-group-item toc-link" href="#展望-3"><span class="toc-text">展望</span></a></li></ol></div></div><hr><div class="social-link sidebar-item"><div><i class="far fa-address-card"></i>社交链接<p></p></div><ul><li><i class="fas fa-envelope"></i><a href="mailto:kevin.zhang.me@gmail.com" target="_blank" rel="external nofollow noopener noreferrer">E-Mail</a></li><li><i class="fab fa-github"></i><a href="https://github.com/KevinZhangMe" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a></li></ul></div></div></aside></div></div></main><footer id="footer" class="footer" style="background:#33363b"><div class="container"><div class="back-to-top"> <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button></div><div class="footer-container"><div class="footer-left"><div class="copyright"> <span class="author">KevinZhang</span><span class="year"><i class="far fa-copyright"></i>2019</span></div></div><div class="footer-right"><div class="custom-info"></div><div class="powered-by"> 由 <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> 强力驱动</div></div></div></div></footer></body></html>
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    <!-- Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145268421-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      var gtag = function () {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-145268421-1");
+    </script>
+    
+
+    
+    <!-- Global site tag (gtag.js)-->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?265c38da225b520620b94857150b4d2c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-144x144.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+         //  $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    <title>基准测试(Benchmark) JMH 实战篇 | 科技洞见 - 技术练达即文章</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN" data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">科技洞见</a></h1>
+        <h2 class="subtitle">技术练达即文章</h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/"><i class="fas fa-th-list"></i><span class="menu-text">分类</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://technologiesinsight.com/posts/9cee/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="KevinZhang">
+       <meta itemprop="description" content="技术练达即文章">
+       <meta itemprop="image" content="/images/ava1.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="科技洞见">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">基准测试(Benchmark) JMH 实战篇</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-07-13T20:17:00+08:00">2019-07-13 20:17:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/posts/9cee/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="posts/9cee/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>上一篇文章介绍了基准测试的基本概念以及 Java性能测试工具 JMH 的简单使用。这一篇文章将通过实例详细介绍 JMH 的使用方法，并验证几个提高程序性能的方式是否正确并给出作者的结论。</p>
+<a id="more"></a>
+<h1 id="字符串拼接基准测试"><a class="markdownIt-Anchor" href="#字符串拼接基准测试"></a> 字符串拼接基准测试</h1>
+<p>Java 中有这样一条优化建议，在循环中使用”+“号拼接字符串会带来很大的性能损失，应该使用StringBuilder。</p>
+<p>这样的建议是否准确呢？我们可以设计基准测试来验证，使用的当然是我们的主角 JMH，下面是代码实现 (源码可以在 GitHub 上查看：<a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">地址</a>)</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Benchmark;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.BenchmarkMode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Mode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.OutputTimeUnit;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.Runner;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.RunnerException;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.options.Options;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.options.OptionsBuilder;<br><br><span class="hljs-comment">/**<br> * 字符串拼接基准测试<br> *<br> * 测试结果：<br> * &lt;pre&gt;<br> * Benchmark                                         Mode  Cnt   Score    Error  Units<br> * StringAppendBenchmarkTenK.stringAddBenchmark      avgt   25  82.590 ± 14.824  ms/op<br> * StringAppendBenchmarkTenK.stringBufferBenchmark   avgt   25   0.127 ±  0.005  ms/op<br> * StringAppendBenchmarkTenK.stringBuilderBenchmark  avgt   25   0.146 ±  0.010  ms/op<br> * &lt;/pre&gt;<br> *<br> * <span class="hljs-doctag">@author</span> KevinZhang &lt;kevin.zhang.me@gmail.com&gt;<br> */</span><br><span class="hljs-meta">@BenchmarkMode</span>(Mode.AverageTime)<br><span class="hljs-meta">@OutputTimeUnit</span>(TimeUnit.MILLISECONDS)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringAppendBenchmarkTenK</span> </span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TEN_K = <span class="hljs-number">10000</span>;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringAddBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        String targetString = <span class="hljs-string">""</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            targetString += <span class="hljs-string">"hello"</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> targetString;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringBuilderBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            sb.append(<span class="hljs-string">"hello"</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringBufferBenchmark</span><span class="hljs-params">()</span> </span>&#123;<br>        StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; TEN_K; i++) &#123;<br>            sb.append(<span class="hljs-string">"hello"</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RunnerException </span>&#123;<br>        Options opt = <span class="hljs-keyword">new</span> OptionsBuilder()<br>                .include(StringAppendBenchmarkTenK<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getSimpleName</span>())<br>                .<span class="hljs-title">forks</span>(1)<br>                .<span class="hljs-title">build</span>()</span>;<br><br>        <span class="hljs-keyword">new</span> Runner(opt).run();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以看到有几个注解:</p>
+<p>@BenchmarkMode 代表基准测试模式，包含</p>
+<ul>
+<li><code>Throughput</code> 模式 ：吞吐量模式，测试单位时间内可以执行测试方法的次数（默认1秒）</li>
+<li><code>Average Time</code> 模式：平均时间模式，测试平均每次操作需要多长时间，它的值等于 <code>Throughput</code> 模式的倒数</li>
+<li><code>Sample Time</code>模式：时间取样模式，测试单位时间运行，自动取样执行的时间进行测量，其结果包含统计信息，比如 P99 、数据分布情况等等</li>
+<li><code>Single Shot Time</code>模式：测试单次方法运行的时间，没有 预热阶段，适合测试冷启动所需要的时间</li>
+<li><code>All</code>模式：同时使用以上所有模式</li>
+</ul>
+<p>@Benchmark 代表这个方法是一个基准测试用例，作为测试用例的入口，类似JUnit 中 @Test 注解</p>
+<p>@OutputTimeUnit 设置输出数据的单位，此处是毫秒，加上AverageTime 模式，最后的单位是 ms/op：每次操作需要多少毫秒</p>
+<h2 id="测试结果"><a class="markdownIt-Anchor" href="#测试结果"></a> 测试结果</h2>
+<p>下面是在我在本地运行的结果:</p>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">Benchmark                                         Mode  Cnt   Score    Error  Units<br>StringAppendBenchmarkTenK.stringAddBenchmark      avgt   25  82.590 ± 14.824  ms/op<br>StringAppendBenchmarkTenK.stringBufferBenchmark   avgt   25   0.127 ±  0.005  ms/op<br>StringAppendBenchmarkTenK.stringBuilderBenchmark  avgt   25   0.146 ±  0.010  ms/op<br></code></pre></td></tr></table></figure>
+<p>我们可以看到 stringAddBenchmark 代表简单Sting 相加的方式，使用平均时间模式，平均每次执行需要82.590毫秒，误差在 ± 14.824 ms。其他两个的意义与之类似。</p>
+<h2 id="结果分析"><a class="markdownIt-Anchor" href="#结果分析"></a> 结果分析</h2>
+<p>从结果中我们可以看到，</p>
+<ol>
+<li><strong>使用简单的字符串相加比使用 StringBuffer 和 StringBuilder 慢了两个数量级；</strong></li>
+<li><strong>StringBuilder 比 StringBuffer要慢一些；</strong></li>
+</ol>
+<p>结果 1 的原因是：String 在字符串拼接时，每次循环会创建新的 StringBuffer 对象(不是 String 对象)，然后把原来的对象销毁，而 StringBuffer / StringBuilder  在初始化时预留了一定的空间，在调用 append 方法时只有在预留空间不足时才会发生数组拷贝。</p>
+<p>结果 2 的原因是：StringBuffer 是线程安全的，append  方法是加锁的；StringBuilder 是非线程安全的。两个类除了在线程安全上的区别，其他几乎没有任何差别。</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// StringBuilder 的 toString 方法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> StringBuilder <span class="hljs-title">append</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.append(str);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<br> &#125;<br><span class="hljs-comment">// StringBuffer 的 toString 方法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> StringBuffer <span class="hljs-title">append</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        toStringCache = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">super</span>.append(str);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<br> &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="展望"><a class="markdownIt-Anchor" href="#展望"></a> 展望</h2>
+<p>分析至此，我们还可以得出一个结论，**尽管在没有多线程竞争的情况下，加锁仍会损失一部分性能。**这个结论可以设计另一个基准测试来验证，读者有兴趣可以自己设计。</p>
+<h1 id="线程安全的-long-类型"><a class="markdownIt-Anchor" href="#线程安全的-long-类型"></a> 线程安全的 Long 类型</h1>
+<p>说起线程安全的 long 类型的实现，不难想到有使用悲观锁锁synchronized 、乐观锁 AtomicLong 这两种实现，有没有性能更高的实现呢？肯定是有的，java 8 中发布的 LongAdder 就是为替代 AtomicLong 而存在的。</p>
+<p>LongAdder 原理，简单来讲就是在多线程竞争激烈的情况下，LongAdder 将维护的值分散到多个段中，来减少CAS的重试，当需要获得结果时，只需要把各个段相加就可以了（类比 ConcurrentHashMap 分段锁的实现）。与 AtomicLong 多线程 CAS 更新单个值相比，理论上性能会有提升。</p>
+<p>下面是我设计的基准测试的用例(源码可以在 GitHub 上查看：<a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">地址</a>)，用来验证线程安全Long类型的不同实现。</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicLong;<br><span class="hljs-keyword">import</span> java.util.concurrent.atomic.LongAdder;<br><br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Benchmark;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.BenchmarkMode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Fork;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Level;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Measurement;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Mode;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.OutputTimeUnit;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Scope;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Setup;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.State;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.TearDown;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Threads;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.annotations.Warmup;<br><span class="hljs-keyword">import</span> org.openjdk.jmh.runner.RunnerException;<br><br><span class="hljs-keyword">import</span> com.technologiesinsight.jmh.helper.LunchHelper;<br><br><br><span class="hljs-comment">/**<br> *  synchronized 锁 vs AtomicLong vs LongAdder 基准测试<br> *<br> * &lt;pre&gt;<br> * Benchmark                                  Mode  Cnt    Score    Error  Units<br> * ThreadSafeLong.testAtomicLongIncrement     avgt   25  383.194 ± 23.359  ms/op<br> * ThreadSafeLong.testLongAdderIncrement      avgt   25  108.105 ±  2.911  ms/op<br> * ThreadSafeLong.testPrimitiveLongIncrement  avgt   25  908.964 ± 29.782  ms/op<br> * &lt;/pre&gt;<br> * <span class="hljs-doctag">@author</span> KevinZhang &lt;kevin.zhang.me@gmail.com&gt;<br> */</span><br><span class="hljs-meta">@BenchmarkMode</span>(Mode.AverageTime)<br><span class="hljs-meta">@OutputTimeUnit</span>(TimeUnit.MILLISECONDS)<br><span class="hljs-comment">//@Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.SECONDS)</span><br><span class="hljs-comment">//@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.SECONDS)</span><br><span class="hljs-comment">//@Fork(1)</span><br><span class="hljs-meta">@State</span>(Scope.Benchmark)<br><span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadSafeLong</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Integer LOOP = <span class="hljs-number">10000000</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object lock = <span class="hljs-keyword">new</span> Object();<br><br>    <span class="hljs-keyword">private</span> AtomicLong atomicLong;<br>    <span class="hljs-keyword">private</span> LongAdder longAdder;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> primitiveLong;<br><br><br>    <span class="hljs-meta">@Setup</span>(Level.Iteration)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.atomicLong = <span class="hljs-keyword">new</span> AtomicLong();<br>        <span class="hljs-keyword">this</span>.longAdder = <span class="hljs-keyword">new</span> LongAdder();<br>        <span class="hljs-keyword">this</span>.primitiveLong = <span class="hljs-number">0L</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testPrimitiveLongIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            <span class="hljs-keyword">synchronized</span> (lock) &#123;<br>                primitiveLong = primitiveLong + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> primitiveLong;<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testAtomicLongIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            atomicLong.incrementAndGet();<br>        &#125;<br>        <span class="hljs-keyword">return</span> atomicLong.get();<br>    &#125;<br><br>    <span class="hljs-meta">@Benchmark</span><br>    <span class="hljs-meta">@Threads</span>(<span class="hljs-number">2</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">testLongAdderIncrement</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; LOOP; i++) &#123;<br>            longAdder.increment();<br>        &#125;<br>        <span class="hljs-keyword">return</span> longAdder.longValue();<br>    &#125;<br><br>    <span class="hljs-meta">@TearDown</span>(Level.Iteration)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tearDown</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> atomicResult = atomicLong.get();<br>        <span class="hljs-keyword">long</span> longAdderResult = longAdder.longValue();<br>        System.out.println(String.format(<span class="hljs-string">"primitiveLongResult is %s,atomicResult is :%s;longAdderResult is %s"</span>, primitiveLong, atomicResult, longAdderResult));<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RunnerException </span>&#123;<br>        LunchHelper.lunchBenchmark(ThreadSafeLong<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>相比于上一个案例，我们发现了几个关于 JMH 的“新面孔”</p>
+<ul>
+<li>@State(Scope.Benchmark) ：有时候测试用例中需要维护一些”状态“（测试用不是一个”纯函数“），”状态“的变化可能会影响测试的结果。所以需要由JMH 管理这些状态，并显示的声明这些状态的声明周期（有效范围）。状态生命周期分为三类，由State的参数指定:
+<ul>
+<li><code>Thread</code>  每一个线程创建自己的状态对象。因此共享对象不会有线程安全问题。</li>
+<li><code>Group</code> 组内共享状态对象。不同分组可以使用  @Group(“groupName”) 指定</li>
+<li><code>Benchmark</code>  一次迭代运行中所有的线程共享状态对象。</li>
+</ul>
+</li>
+<li>@Setup(Level.Iteration) :用于执行基准测试前执行一些操作，比如初始化等等。参数 Level表示改方法说明时候执行：
+<ul>
+<li><code>Trial</code> 每次一个进程完整运行一遍测试用例之前执行：包括 warmUp 和  正式执行阶段</li>
+<li><code>Iteration</code> 每次迭代前会执行。一次完整的运行包含多次迭代过程，每次迭代运行一次测试的方法。</li>
+<li><code>Invocation</code>  每次方法调用前会执行。</li>
+</ul>
+</li>
+<li>@TearDown : 类似@Setup ,在测试后执行</li>
+<li>@Thread :同时执行的线程数，用于线程下的基准测试</li>
+<li>注释部分 @Measurement 等：用于测试用例开发阶段，提高执行速度，正式测试前需要注释掉</li>
+<li><code>LunchHelper.lunchBenchmark(ThreadSafeLong.class)</code> JMH 启动助手</li>
+</ul>
+<h2 id="测试结果-2"><a class="markdownIt-Anchor" href="#测试结果-2"></a> 测试结果</h2>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">Benchmark                                  Mode  Cnt    Score    Error  Units<br>ThreadSafeLong.testAtomicLongIncrement     avgt   25  383.194 ± 23.359  ms/op<br>ThreadSafeLong.testLongAdderIncrement      avgt   25  108.105 ±  2.911  ms/op<br>ThreadSafeLong.testPrimitiveLongIncrement  avgt   25  908.964 ± 29.782  ms/op<br></code></pre></td></tr></table></figure>
+<p>通过基准测试结果我们可以看到，testAtomicLongIncrement 代表使用 Atomic 类完成自增，运行 25 次后，所得到每次运行平均时间是383.194 ms，误差在± 23.359ms。其他结果的意义与之类似。</p>
+<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
+<p>从结果中可以看到，在两个线程竞争同一个 long 类型的情况下，LongAdder 性能最好名副其实，AtomicLong 次之，使用 synchronized 加锁性能最差。</p>
+<p>在日常开发中，我们可以尝试使用 LongAdder 代替 AtomicInteger 和加锁的方式</p>
+<h2 id="展望-2"><a class="markdownIt-Anchor" href="#展望-2"></a> 展望</h2>
+<p>通过这个测试案例，我们可以分析出 JMH 测试框架本身的性能损耗，欢迎有兴趣的读者留言交流。</p>
+<h1 id="其他测试案例"><a class="markdownIt-Anchor" href="#其他测试案例"></a> 其他测试案例</h1>
+<p><a href="https://github.com/KevinZhangMe/jmh-demo" rel="external nofollow noopener noreferrer" target="_blank">源码</a> 中还有其他一些测试案例，比如</p>
+<ul>
+<li>常见几个Map的测试：位于 com.technologiesinsight.jmh.MapBenchmark</li>
+</ul>
+<h1 id="展望-3"><a class="markdownIt-Anchor" href="#展望-3"></a> 展望</h1>
+<p>很多公司编程对测试环节于不太重视，追求的是功能快速上线。这样的做法短期内可以提高开发速度，但如果从长远来看，单元测试，基准测试等测试，会减少后期维护、功能扩展的成本；对于开发者来说，掌握基本的测试理论和实践是一项基本的能力。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/原创/" rel="tag"><i class="fas fa-tags"></i>原创</a>
+        
+        <a class="post-tag button" href="/tags/JMH/" rel="tag"><i class="fas fa-tags"></i>JMH</a>
+        
+        <a class="post-tag button" href="/tags/基准测试/" rel="tag"><i class="fas fa-tags"></i>基准测试</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/posts/9ee5/" rel="next" title="基准测试 (Benchmark) 入门篇"><i class="fas fa-angle-left"></i><span class="nav-title">基准测试 (Benchmark) 入门篇</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/posts/1a8c/" rel="prev" title="大数据系统下的 Lambda 架构"><span class="nav-title">大数据系统下的 Lambda 架构</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//technologiesinsight.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "https://technologiesinsight.com/posts/9cee/";
+    this.page.identifier = "posts/9cee/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://technologiesinsight.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/ava1.jpg" alt="KevinZhang">
+  
+  <h1 class="author-name">KevinZhang</h1>
+  <h2 class="author-description">技术练达即文章</h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">7</a></div>
+    </div>
+    
+    
+    
+    <div class="categories-count count-block">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">5</a></div>
+    </div>
+    
+    
+    
+    <div class="tags-count count-block">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">11</a></div>
+    </div>
+    
+    
+    
+    
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#字符串拼接基准测试"><span class="toc-text"> 字符串拼接基准测试</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#测试结果"><span class="toc-text"> 测试结果</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#结果分析"><span class="toc-text"> 结果分析</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#展望"><span class="toc-text"> 展望</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#线程安全的-long-类型"><span class="toc-text"> 线程安全的 Long 类型</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#测试结果-2"><span class="toc-text"> 测试结果</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#分析"><span class="toc-text"> 分析</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#展望-2"><span class="toc-text"> 展望</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#其他测试案例"><span class="toc-text"> 其他测试案例</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#展望-3"><span class="toc-text"> 展望</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:kevin.zhang.me@gmail.com" target="_blank" rel="external nofollow noopener noreferrer">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/KevinZhangMe" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a></li>
+        
+      </ul>
+    </div>
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">KevinZhang</span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> 强力驱动
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

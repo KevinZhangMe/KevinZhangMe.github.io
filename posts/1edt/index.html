@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    <!-- Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145268421-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      var gtag = function () {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-145268421-1");
+    </script>
+    
+
+    
+    <!-- Global site tag (gtag.js)-->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?265c38da225b520620b94857150b4d2c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-144x144.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+         //  $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          // $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    <title>地理位置信息分析技术与应用 | 科技洞见 - 技术练达即文章</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN" data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">科技洞见</a></h1>
+        <h2 class="subtitle">技术练达即文章</h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
+        
+        <li role="menuitem"><a href="/categories/"><i class="fas fa-th-list"></i><span class="menu-text">分类</span></a></li>
+        
+        <li role="menuitem"><a href="/tags/"><i class="fas fa-tags"></i><span class="menu-text">标签</span></a></li>
+        
+        <li role="menuitem"><a href="/about/"><i class="fas fa-user-edit"></i><span class="menu-text">关于</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://technologiesinsight.com/posts/1edt/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="KevinZhang">
+       <meta itemprop="description" content="技术练达即文章">
+       <meta itemprop="image" content="/images/ava1.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="科技洞见">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">地理位置信息分析技术与应用</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2022-07-13T17:11:00+08:00">2022-07-13 17:11:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/posts/1edt/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="posts/1edt/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>在现代商业智能和数据分析领域，地理位置信息已成为不可或缺的维度。通过分析用户的地理位置数据，企业能够获得深度的市场洞察，优化业务决策。本文将探讨大数据地理位置分析的技术实现和应用场景。</p>
+<a id="more"></a>
+<h2 id="一-技术篇"><a class="markdownIt-Anchor" href="#一-技术篇"></a> 一、技术篇</h2>
+<h2 id="11-空间数据表示"><a class="markdownIt-Anchor" href="#11-空间数据表示"></a> 1.1 空间数据表示</h2>
+<p>介绍了空间数据如何表示、如何索引、常见的运算。数仓开发中实用的概念、技术。</p>
+<h3 id="111-大地测量系统"><a class="markdownIt-Anchor" href="#111-大地测量系统"></a> 1.1.1 大地测量系统</h3>
+<ul>
+<li><strong>坐标表示</strong><br>
+使用经纬度表示，比如天安门广场一点的经纬度：116.397303,39.909269</li>
+<li><strong>WGS84</strong><br>
+大地坐标系，世界大地测量系统（World Geodetic System, WGS）是一种用于地图学、大地测量学和导航（包括全球定位系统）的大地测量系统标准。<br>
+WGS包含一套地球的标准经纬坐标系、一个用于计算原始海拔数据的参考椭球体，和一套用以定义海平面高度的引力等势面数据。<br>
+GPS全球定位系统使用的就是WGS 84参考系。</li>
+<li><strong>GCJ02</strong><br>
+火星坐标系，地形图非线性保密处理算法，国测局坐标,是一种基于WGS-84制定的大地测量系统。<br>
+此坐标系所采用的混淆算法会在经纬度中加入看似随机的偏移。<br>
+GCJ02 座标串换成WGS-84的地图就可能造成100－700米不等的偏移。<br>
+GCJ-02大量使用正弦函数制造高频噪音，形成了一个超越方程，导致基本不可能获得解析解。<br>
+GCJ-02坐标系统本身保密，但是目前已有等多种语言的开源转换实现。</li>
+</ul>
+<h3 id="112-空间对象类型"><a class="markdownIt-Anchor" href="#112-空间对象类型"></a> 1.1.2 空间对象类型</h3>
+<p>空间对象，是指定义空间数据的几种基础数据对象，主要是由常见的点、线、面组成。</p>
+<ul>
+<li>点(Point)</li>
+<li>线(LineString)</li>
+<li>面(Polygon)<br>
+其他：</li>
+<li>多点(MultiPoint)</li>
+<li>多线(MultiLineString)</li>
+<li>多面(MultiPolygon)</li>
+</ul>
+<h3 id="113-空间数据格式"><a class="markdownIt-Anchor" href="#113-空间数据格式"></a> 1.1.3 空间数据格式</h3>
+<ul>
+<li>WKT/WKB<br>
+WKT(Well-Known Text)，是一种兼容了可读性和存储性的数据格式。WKB，是它的二进制格式，更适合数据库存储。</li>
+<li>GeoJSON<br>
+Json，定义了geometry对象。在线检验GeoJSON的规范性： <a href="http://geojson.io/" rel="external nofollow noopener noreferrer" target="_blank">http://geojson.io/</a></li>
+</ul>
+<p>示例：</p>
+<table>
+    <tr>        <td>空间对象类型</td>
+        <td>形状</td>
+        <td>WKT格式</td>
+        <td>GeoJSON格式</td>
+    </tr>    <tr>        <td>Point</td>
+        <td><img src="/posts/1edt/src+XaGM8NtBgYMGDCzMJl+Am4wOmV5LWx2AQAAAABJRU5ErkJggg==.png"></td>
+        <td>POINT (30 10)</td>
+        <td>{ "type": "Point", "coordinates": [30, 10] }</td>
+    </tr>    <tr>        <td>LineString</td>
+        <td><img src="/posts/1edt/t41.png"></td>
+        <td>LINESTRING (30 10, 10 30, 40 40)</td>
+        <td>{ "type": "LineString", "coordinates": [ [30, 10], [10, 30], [40, 40] ] }</td>
+    </tr>    <tr>        <td>Polygon</td>
+        <td><img src="/posts/1edt/BPwHtSsbiI43yqcAAAAASUVORK5CYII=.png"></td>
+        <td>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</td>
+        <td>{ "type": "Polygon", "coordinates": [ [[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]
+            ] }
+        </td>
+    </tr>    <tr>        <td>Polygon</td>
+        <td><img src="/posts/1edt/wT8B9JtwIhIB+z7AAAAAElFTkSuQmCC.png"></td>
+        <td>POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))</td>
+        <td>{ "type": "Polygon", "coordinates": [ [[35, 10], [45, 45], [15, 40], [10, 20], [35,
+            10]], [[20, 30], [35, 35], [30, 20], [20, 30]] ] }
+        </td>
+    </tr>    <tr>        <td>MultiPoint</td>
+        <td><img src="/posts/1edt/GWGmvHczcCAAaPzcM2uNwSjtR+9fgagOSn4yww1QzcDAwYMGC2Mpz8BVwo0dHnSxhGFAAAAAElFTkSuQmCC.png">
+        </td>        <td>MULTIPOINT ((10 40), (40 30), (20 20), (30 10))</td>
+        <td>{ "type": "MultiPoint", "coordinates": [ [10, 40], [40, 30], [20, 20], [30, 10] ] }</td>
+    </tr>    <tr>        <td>MultiPoint</td>
+        <td></td>        <td>MULTIPOINT (10 40, 40 30, 20 20, 30 10)</td>
+    </tr>    <tr>        <td>MultiLineString</td>
+        <td><img src="/posts/1edt/rB6nlF9PWv1DkDmNr6rnrU7AO+UMQ2jst6obuZyXoAJMAEmwEwEZkpfAv4Dgav5eaAJOX4AAAAASUVORK5CYII=.png">
+        </td>        <td>MULTILINESTRING ((10 10, 20 20, 10 40), (40 40, 30 30, 40 20, 30 10))</td>
+        <td>{ "type": "MultiLineString", "coordinates": [ [[10, 10], [20, 20], [10, 40]], [[40, 40],
+            [30, 30], [40, 20], [30, 10]] ] }
+        </td>
+    </tr>    <tr>        <td>MultiPolygon</td>
+        <td><img src="/posts/1edt/wT8A5vKd4jLnk3SAAAAAElFTkSuQmCC.png"></td>
+        <td>MULTIPOLYGON (((30 20, 45 40, 10 40, 30 20)), ((15 5, 40 10, 10 20, 5 10, 15 5)))</td>
+        <td>{ "type": "MultiPolygon", "coordinates": [ [ [[30, 20], [45, 40], [10, 40], [30, 20]] ],
+            [ [[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]] ] ] }
+        </td>
+    </tr>    <tr>        <td>MultiPolygon</td>
+        <td><img src="/posts/1edt/jxl4iFH9c98AAAAASUVORK5CYII=.png"></td>
+        <td>MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20
+            35), (30 20, 20 15, 20 25, 30 20)))
+        </td>
+        <td>{ "type": "MultiPolygon", "coordinates": [ [ [[40, 40], [20, 45], [45, 30], [40, 40]] ],
+            [ [[20, 35], [10, 30], [10, 10], [30, 5], [45, 20], [20, 35]], [[30, 20], [20, 15], [20,
+            25], [30, 20]] ] ] }
+        </td>
+    </tr></table>
+<h2 id="12-空间索引"><a class="markdownIt-Anchor" href="#12-空间索引"></a> 1.2 空间索引</h2>
+<p>空间索引，是空间数据库用来优化空间查询的数据库索引，它是能够使得用户高效查询空间对象的一种数据结构。</p>
+<p>传统的数据库索引(B树)，并不适合处理空间查询，比如点是否落入多边形内、点之间距离等等。如果不建立索引，则任何搜索都将需要对空间数据库中的每个记录进行“顺序扫描”，从而导致处理时间更长。</p>
+<h3 id="121-需要索引的查询"><a class="markdownIt-Anchor" href="#121-需要索引的查询"></a> 1.2.1 需要索引的查询</h3>
+<ul>
+<li>窗口查询：给定一个查询窗口（通常是一个矩形），返回与查询窗口相重叠的物体。<br>
+<img src="/posts/1edt/2Q==.jpeg" alt></li>
+<li>点查询：给定一个点，返回包含这个点的所有几何图形</li>
+</ul>
+<h3 id="122-索引查询过程"><a class="markdownIt-Anchor" href="#122-索引查询过程"></a> 1.2.2 索引查询过程</h3>
+<p>通过索引操作对象的MBB来进行查询一共分为两步</p>
+<ul>
+<li>Filtering: 过滤掉MBB(minimum bounding box，最小限定箱)不相交的数据集，剩下的MBB被索引到的称为一个数据的超集。<br>
+<img src="/posts/1edt/9k=.jpeg" alt></li>
+<li>Refinement: 测试实际的几何形状会不会满足查询条件，精确化。<br>
+<img src="/posts/1edt/2Q==.1.jpeg" alt>
+<ul>
+<li>如何判断两个MBR是否相交？ 只要任一矩形的最右端都大于另一矩形的最左端且任一矩形最高端大于另一矩形的最低端，则两矩形相交；反之，若其中任一条件不满足，两矩形不相交。<br>
+<img src="/posts/1edt/2Q==.2.jpeg" alt></li>
+</ul>
+</li>
+</ul>
+<h3 id="123-空间索引分类"><a class="markdownIt-Anchor" href="#123-空间索引分类"></a> 1.2.3 空间索引分类</h3>
+<ul>
+<li><strong>空间驱动的结构</strong><br>
+这些数据结构是基于将二维空间划分为单元(或网格)，并根据空间关系(重叠或相交)把空间对象映射到单元。IBM DB2和Microsoft SQL Server等商业数据库使用这些方法。</li>
+<li><strong>数据驱动的结构</strong><br>
+这些数据结构直接由空间对象集合的分区来组织。使用mbr对数据对象进行分组，以适应其在嵌入空间中的分布。商业数据库，如开源数据库 PostGIS和MySQL，都使用这些数据结构。</li>
+</ul>
+<h3 id="124-空间索引举例"><a class="markdownIt-Anchor" href="#124-空间索引举例"></a> 1.2.4 空间索引举例</h3>
+<p><strong>空间驱动结构 GeoHash：</strong><br>
+GeoHash 是一种将经纬度坐标（ lat/lon ）编码成字符串的方式。这么做的初衷只是为了让地理位置在 url 上呈现的形式更加友好，但现在 GeoHash 已经变成一种在数据库中有效索引地理坐标点和地理形状的方式。<br>
+GeoHash是一个二进制字符串，其中每个字符表示全局经纬度矩形的交替划分。从图8可以看出空间平面划分的过程。第一次划分将矩形分成两个GeoHash代码为“0”和“1”的正方形。位于垂直分区左侧的空间对象具有以“0”开头的 GeoHash，而位于右半部分的空间对象具有以“1”开头的GeoHash作为其第一个前缀。然后，每一边的数据进一步水平分割:在这一行以上的对象接收“0”，而在这一行以下的对象接收“1”作为它们的第二个前缀。模式继续分裂，直到达到所需的解决方案。每个Geohash矩形可以被分解成4个子哈希，划分5次,把整个世界分为 32 个单元的格子。单元又可以继续被分解成 32 个更小的单元，不断重复下去，以此类推。</p>
+<p><img src="/posts/1edt/RvdbdM9+hVNawAAAABJRU5ErkJggg==.png" alt><img src="/posts/1edt/2Q==.3.jpeg" alt><br>
+GeoHash 使用 Base32 编码成字符串，比如下图展示了北京9个区域的GeoHash字符串，分别是WX4ER，WX4G2、WX4G3等等，每一个字符串代表了某一矩形区域。也就是说，这个矩形区域内所有的点（经纬度坐标）都共享相同的GeoHash字符串。<br>
+字符串越长，表示的范围越精确。</p>
+<p><img src="/posts/1edt/lmPgRLBsUbI919CTGknGIJMFnaO3kB9y7XegCXcY25CF0JQMSr8L9ujCHAvVLJaAAAAAElFTkSuQmCC.png" alt><img src="/posts/1edt/Sr12idZCrOAdroVbUr15J+LR7fHATDeY4Y0lT8Dtvv2EVYCFm3YZStt+5kfPMwlWoFnRb3Ke67vzWxfjBMkybz2+fxfShtyK9uOWGdLcLBzOMeyMskc3j5ZE1g2L0WxupsNNOtKQR4GbgN2qeLVZ5ltcrzfvBCDQsb2UIDrqtjYkxXUk6sPJnVB4Yyk0A3qUabiP8P5gbDEiHufIUAAAAASUVORK5CYII=.png" alt></p>
+<table>
+<thead>
+<tr>
+<th>GeoHash <br>字符串长度</th>
+<th>宽</th>
+<th>高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5,000km</td>
+<td>5,000km</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1,250km</td>
+<td>625km</td>
+</tr>
+<tr>
+<td>3</td>
+<td>156km</td>
+<td>156km</td>
+</tr>
+<tr>
+<td>4</td>
+<td>39.1km</td>
+<td>19.5km</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4.89km</td>
+<td>4.89km</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1.22km</td>
+<td>0.61km</td>
+</tr>
+<tr>
+<td>7</td>
+<td>153m</td>
+<td>153m</td>
+</tr>
+<tr>
+<td>8</td>
+<td>38.2m</td>
+<td>19.1m</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4.77m</td>
+<td>4.77m</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1.19m</td>
+<td>0.596m</td>
+</tr>
+<tr>
+<td>11</td>
+<td>149mm</td>
+<td>149mm</td>
+</tr>
+<tr>
+<td>12</td>
+<td>37.2mm</td>
+<td>18.6mm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>数据驱动的结构 R 树：</strong><br>
+R树是B树在高维空间的扩展，是一棵平衡树。每个R树的叶子结点包含了多个指向不同数据的指针，这些数据可以是存放在硬盘中的，也可以是存在内存中。<br>
+根据R树的这种数据结构，当我们需要进行一个高维空间查询时，我们只需要遍历少数几个叶子结点所包含的指针**（即缩小到某个区域下去进行查询，还是采用缩小范围的思想）**，查看这些指针指向的数据是否满足要求即可。这种方式使我们不必遍历所有数据即可获得答案，效率显著提高。<br>
+<img src="/posts/1edt/JOBNSOhOMfkAAAAASUVORK5CYII=.png" alt></p>
+<h2 id="13-空间数据计算"><a class="markdownIt-Anchor" href="#13-空间数据计算"></a> 1.3 空间数据计算</h2>
+<p>空间数据计算包含坐标转换、索引计算、关系计算。例如：</p>
+<ul>
+<li>转换
+<ul>
+<li>坐标系转换：gps转换为火星坐标系,火星转换为gps坐标系</li>
+<li>WKT 格式与 GeoGSON 转换</li>
+</ul>
+</li>
+<li>度量
+<ul>
+<li>两点之间的球面距离</li>
+<li>计算多边形面积</li>
+</ul>
+</li>
+<li>索引
+<ul>
+<li>点所在的 GeoHash</li>
+<li>点到 GeoHash 中点的距离</li>
+<li>面所在的 GeoHash</li>
+<li>GeoHash 合并</li>
+<li>把传入的GeoHash列表（以字符串形式传入，逗号分隔）进位至指定targetLevel</li>
+</ul>
+</li>
+<li>关系
+<ul>
+<li>几何 A 经过几何 B。</li>
+<li>几何 A 完全包含在(Within)几何 B 中。</li>
+<li>几何 A 完全包含几何 B。</li>
+<li>几何之间彼此没有相交或接触（不相交）。</li>
+<li>几何完全重合。</li>
+<li>几何相互叠加。</li>
+<li>几何接触于一点。</li>
+</ul>
+</li>
+</ul>
+<details> <summary> 关系的图形表示 </summary> <ul> <li>包含(Contains)/ Within <img src="/posts/1edt/OHFwgADs=.gif" alt="Contains Indicator"> <img src="/posts/1edt/wBylg0kkLA3lAwkSd0Tz0AnScB3CNxPZABiSQB3KQwA47CRwN13RLspOwAWab1zGwtiJgLLHL1gXVSRq62AQ1Dw3AAArCAE8tCQWw2BtKCUx7ASRc04o8uHmN2KAd2qI92qRd2qZ92qid2qq92qzd2q792rAd27I927Rd27Z927id27q927zd277928Ad3MI93MRd3HESCAA7.gif" alt="Contains Details"> </li> <li>不相交(Disjoint) <img src="/posts/1edt/6R2A14aSlwlnqHYZQAI6yJ8YmqEauqEc2qEe+qEgGqIiOqIkWqImeqIomqIquqIs2qIu+qIwGqMyOqM0WqM2eqM4mqM6uqM82qM++qNAGqRCOqREWqRGeqRImqRKuqRM2qRO+qRQGqVSOqVUWqVWeqVYmqVauqVc2qVe+qVgGqZiOqZkyk6BAAA7.gif" alt="Disjoint Representation"> </li> <li>经过(Crosses)/部分重合(Overlaps) <img src="/posts/1edt/A8If4KDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKzgoEAOw==.gif" alt="Crosses/Overlaps Indicator"> <img src="/posts/1edt/aIMBAA7.gif" alt="Crosses Detail"> </li> <li>接触(Touches) <img src="/posts/1edt/IlglPyUv8nJ8VFIDJihRL801C2mkcN4EUmM2gjRYgzZ4gziYgzq4gzzYgz74g0AYhEI4hERYhEZ4hEiYhEq4hEzYhE74hFAYhVI4hVRYhVZ4hViYhVq4hVzYhV54JIEAADs=.gif" alt="Touches Representation"> </li> </ul> </details>
+<h2 id="14-空间数据处理在数仓计算中的应用举例"><a class="markdownIt-Anchor" href="#14-空间数据处理在数仓计算中的应用举例"></a> 1.4  空间数据处理在数仓计算中的应用举例</h2>
+<p>已有用户流量表（包含经纬度字段）和 POI 维度数据表（包含POI 经纬度字段），计算某天内以 POI 为圆心，半径 1 km 的客流。</p>
+<p><img src="/posts/1edt/v8B6kRmyhAIkP8AAAAASUVORK5CYII=.png" alt><br>
+解法：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>优点</th>
+<th>缺点</th>
+<th>采纳</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方案一：使用关系计算</td>
+<td>实现简单，直观</td>
+<td>性能差</td>
+<td>否</td>
+</tr>
+<tr>
+<td>方案二：使用索引计算</td>
+<td>性能高</td>
+<td>编码复杂</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<h2 id="15-大数据地理信息系统gis"><a class="markdownIt-Anchor" href="#15-大数据地理信息系统gis"></a> 1.5 大数据地理信息系统（GIS）</h2>
+<h3 id="151-什么是gis"><a class="markdownIt-Anchor" href="#151-什么是gis"></a> 1.5.1 什么是GIS</h3>
+<p>GIS(Geographic Information System)，它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）空间中的有<strong>关地理分布数据</strong>进行输入、存储、查询、分析和显示的计算机系统。<br>
+GIS将数据连接到地图上，将位置数据(事物所在的位置)与所有类型的描述信息(事物所在的位置)整合在一起。<br>
+地理信息系统通过使用位置作为“关键指标变量”，提供了将以前不相关的信息关联起来的能力。</p>
+<h3 id="152-技术体系"><a class="markdownIt-Anchor" href="#152-技术体系"></a> 1.5.2 技术体系</h3>
+<p>GIS 技术发展<br>
+<img src="/posts/1edt/tlZCgazZ1k9PYVt2wiDNL9I0zVhYwQVhX9SUlJ3T38B3CC9U4AiWIIAAAAASUVORK5CYII=.png" alt><br>
+GIS基础软件五大技术体系，即：大数据GIS技术（Big Data GIS）、人工智能 GIS 技 术（AI- GIS）、新 一 代 三维 GIS 技 术 （New Three-D GIS）、分布式 GIS 技术（Distributed GIS）、跨平台 GIS 技术（Cross-platform GIS），合称 “BitDC”<br>
+<img src="/posts/1edt/1iQP4AAAAASUVORK5CYII=.png" alt></p>
+<h3 id="153-技术应用"><a class="markdownIt-Anchor" href="#153-技术应用"></a> 1.5.3 技术应用</h3>
+<p>交通、国防、灾害预防、教育、能源、工程等<br>
+例如：</p>
+<ul>
+<li>增强现实——商业用途的增强现实：如广告和餐馆评论</li>
+<li>地理围栏——用地理围栏限制汽车停放，是汽车共享和租赁的基础</li>
+<li>自动驾驶汽车——自动驾驶汽车配备激光雷达、GPS等</li>
+<li>实时交通——共享实时交通信息和道路警报</li>
+</ul>
+<h2 id="二-应用篇"><a class="markdownIt-Anchor" href="#二-应用篇"></a> 二 、应用篇</h2>
+<h3 id="21-业务场景分类"><a class="markdownIt-Anchor" href="#21-业务场景分类"></a> 2.1 业务场景分类</h3>
+<ul>
+<li><strong>开城开站/选址：</strong> 业务在某个位置分析其线下客流（业务上限）、用户特征（通勤群体、白领群体等）、位置本身的特征（旅游城市、小区聚集地等），以及用户线上化渗透情况，再结合业务线自身采集的周边环境、业务供给等评估，来选定业务适合在哪些地方，什么范围开城/开站，或进行线下推广活动。</li>
+<li><strong>业务策略调整：</strong> 根据业务当前渗透情况、平台渗透情况、需求量情况等及时调整业务已有运营策略或对制定新策略，如平台流量倾斜、省内补贴资源调配、活动上线策略等</li>
+<li><strong>业务规模&amp;潜客空间评估：</strong> 对于业务线的一些客观特性，评估在地域范围内需求上限、业务已达成情况等，从而制定业务目标、评估可增长空间、分析当前不同区域业务特征及对应策略等</li>
+</ul>
+<h3 id="22-技术分类"><a class="markdownIt-Anchor" href="#22-技术分类"></a> 2.2 技术分类</h3>
+<h4 id="221-点-面汇总类分析"><a class="markdownIt-Anchor" href="#221-点-面汇总类分析"></a> 2.2.1 点、面汇总类分析</h4>
+<p>定义：分析区域内点（地图里的POI）、面（地图里的AOI） 的分布、数量、面积、种类、属性等信息，支持上卷下钻。</p>
+<p>例如：计算xx城市餐饮外卖业务渗透率，即计算开通外卖的POI 的数量与全部餐饮POI的数量的比值。</p>
+<h4 id="222-多点-线性分析"><a class="markdownIt-Anchor" href="#222-多点-线性分析"></a> 2.2.2 多点、线性分析</h4>
+<p><strong>OD 分析：</strong></p>
+<p>通过设置统计口径及空间粒度等相关参数，支持用户获取不同区域之间的<strong>居住和工作人口</strong>流动的数量、画像。辅助掌握不同区域之间联系紧密程度及诸如城镇化建设等相关政策的研究及制定。</p>
+<p>可查询分析不同市、区之间的通勤信息和不同时间维度下的OD数量，以此判断职住平衡情况与城市间的出行、往来强度。</p>
+<p>通过设置O点和D点范围、空间粒度等相关参数，支持用户获取不同区域之间的<strong>出发点-到达点</strong>数量、画像。辅助掌握城市出行强度及邻近城市之间的往来强度</p>
+<p><strong>职住分析：</strong></p>
+<p>通过设置统计口径、空间粒度等相关参数，支持用户获取不同市、区之间的<strong>通勤信息</strong>：通勤人口画像、通勤距离、通勤方式和通勤时间等</p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/kwAAAAAElFTkSuQmCC.png?1743915653000" alt></p>
+<p><strong>迁徙分析：</strong></p>
+<p>通过设置出发区域、到达区域、时间范围等相关参数，支持用户获取<strong>不同城市</strong>之间的<strong>迁徙</strong>数量和迁徙人群画像。方便掌握城市之间人群流动特征。百度迁徙： <a href="https://qianxi.baidu.com/" rel="external nofollow noopener noreferrer" target="_blank">https://qianxi.baidu.com/</a></p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/9jJ8wIAAAAASUVORK5CYII=.png?1743915653000" alt></p>
+<p><strong>驻留分析：</strong></p>
+<p>随着定位技术的不断发展，嵌入在手机的GPS、北斗等位置传感器可以周期性地记录移动对象的位置，产生了海量的轨迹数据，如行人轨迹、出租车轨迹、共享单车轨迹等。来自于这些轨迹数据中的驻留点（即移动对象在一段时间内停留在某个区域范围内产生的轨迹点）蕴含了丰富的移动对象停留信息，如出租车候车、行人游玩、货车装卸货等，这些可以帮助我们获取某一地点的动态访问信息，继而挖掘地点的动态特征，全面理解地点的时空信息</p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/lxQAAAABJRU5ErkJggg==.png?1743915653000" alt></p>
+<h2 id="三-解决方案案例商业选址"><a class="markdownIt-Anchor" href="#三-解决方案案例商业选址"></a> 三、解决方案案例：商业选址</h2>
+<h3 id="31-解决哪些问题"><a class="markdownIt-Anchor" href="#31-解决哪些问题"></a> 3.1 解决哪些问题</h3>
+<ol>
+<li>已有门店布局是否合理？</li>
+<li>哪些区域适合新开店？</li>
+<li>某点位是否适合开店？</li>
+</ol>
+<h3 id="32-解决方案"><a class="markdownIt-Anchor" href="#32-解决方案"></a> 3.2 解决方案</h3>
+<p><strong>（1）看概况，选片区——网点推荐</strong></p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/pYhTCyUNr2dXSufq1mHr70z025E6qly8fPo+MiVpCtAQ5j47MQl4N6tZXIToc3inoBnC1DaILi9cAAAAAAA=.webp?1743915653000" alt></p>
+<ol>
+<li>
+<p>根据不同行业的需求和选址城市的基本属性提供科学的模型评分规则，从目标客户属性、共生及竞对商家、商业氛围、周边配套、客群净需求等多维度对全城进行大数据扫描。</p>
+</li>
+<li>
+<p>用户在平台可选择意向选址城市，配置个性化模型参数及其权重，输出模型的综合量化结果和可视化评估结果，查看推荐网格和叠加现有网点的网格的情况，</p>
+</li>
+<li>
+<p>导出网格的详细数据，一目了然地锁定最佳价值区位。</p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/ABdYcbdGNB1TAAAAAElFTkSuQmCC.png?1743915653000" alt></p>
+</li>
+</ol>
+<p><strong>(2) 评点位——定点评估</strong></p>
+<p>打破时空信息不对称，全方位评估备选点位特征，高效推动选址决策</p>
+<p><img src="app://781b4d20be03b26ca62464b6d978b8e9aabe/Volumes/docker/hexo-domain/source/_posts/%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E3%80%81%E5%BA%94%E7%94%A8%E5%8F%8A%E5%B1%95%E6%9C%9B/AndNbODgLkIAAAAASUVORK5CYII=.png?1743915653000" alt></p>
+<p>支持以多种方式快速锁定评估点位及其范围，包括关键词检索、上传点位坐标、自定义形状圈选、商圈选择，一键获取被评估区域的人口分析、职住分析、客流分析、品牌分析、设施分析、OD分析、交通分析和活力趋势分析的全维度可视化报告，支持保存和下载分析报告和相关数据。同时，平台打破时空信息的不对称性，支持多个点位的横向空间对比分析和单一点位的纵向时间对比分析，全方位评估备选点位情况，高效推动选址决策。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/原创/" rel="tag"><i class="fas fa-tags"></i>原创</a>
+        
+        <a class="post-tag button" href="/tags/大数据/" rel="tag"><i class="fas fa-tags"></i>大数据</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/posts/9e+70/" rel="next" title="深入理解 ES 查询机制[一]"><i class="fas fa-angle-left"></i><span class="nav-title">深入理解 ES 查询机制[一]</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//technologiesinsight.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "https://technologiesinsight.com/posts/1edt/";
+    this.page.identifier = "posts/1edt/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://technologiesinsight.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/ava1.jpg" alt="KevinZhang">
+  
+  <h1 class="author-name">KevinZhang</h1>
+  <h2 class="author-description">技术练达即文章</h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">7</a></div>
+    </div>
+    
+    
+    
+    <div class="categories-count count-block">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">5</a></div>
+    </div>
+    
+    
+    
+    <div class="tags-count count-block">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">11</a></div>
+    </div>
+    
+    
+    
+    
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#一-技术篇"><span class="toc-text"> 一、技术篇</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#11-空间数据表示"><span class="toc-text"> 1.1 空间数据表示</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#111-大地测量系统"><span class="toc-text"> 1.1.1 大地测量系统</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#112-空间对象类型"><span class="toc-text"> 1.1.2 空间对象类型</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#113-空间数据格式"><span class="toc-text"> 1.1.3 空间数据格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#12-空间索引"><span class="toc-text"> 1.2 空间索引</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#121-需要索引的查询"><span class="toc-text"> 1.2.1 需要索引的查询</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#122-索引查询过程"><span class="toc-text"> 1.2.2 索引查询过程</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#123-空间索引分类"><span class="toc-text"> 1.2.3 空间索引分类</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#124-空间索引举例"><span class="toc-text"> 1.2.4 空间索引举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#13-空间数据计算"><span class="toc-text"> 1.3 空间数据计算</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#14-空间数据处理在数仓计算中的应用举例"><span class="toc-text"> 1.4  空间数据处理在数仓计算中的应用举例</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#15-大数据地理信息系统gis"><span class="toc-text"> 1.5 大数据地理信息系统（GIS）</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#151-什么是gis"><span class="toc-text"> 1.5.1 什么是GIS</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#152-技术体系"><span class="toc-text"> 1.5.2 技术体系</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#153-技术应用"><span class="toc-text"> 1.5.3 技术应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#二-应用篇"><span class="toc-text"> 二 、应用篇</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#21-业务场景分类"><span class="toc-text"> 2.1 业务场景分类</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#22-技术分类"><span class="toc-text"> 2.2 技术分类</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#221-点-面汇总类分析"><span class="toc-text"> 2.2.1 点、面汇总类分析</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#222-多点-线性分析"><span class="toc-text"> 2.2.2 多点、线性分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#三-解决方案案例商业选址"><span class="toc-text"> 三、解决方案案例：商业选址</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#31-解决哪些问题"><span class="toc-text"> 3.1 解决哪些问题</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#32-解决方案"><span class="toc-text"> 3.2 解决方案</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:kevin.zhang.me@gmail.com" target="_blank" rel="external nofollow noopener noreferrer">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/KevinZhangMe" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a></li>
+        
+      </ul>
+    </div>
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">KevinZhang</span><span class="year"><i class="far fa-copyright"></i>2025</span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> 强力驱动
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
